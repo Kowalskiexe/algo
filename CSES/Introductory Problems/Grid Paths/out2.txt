@@ -1,0 +1,70 @@
+1111111
+1111111
+1111111
+1111111
+1111111
+1111111
+1111110
+
+hit target 6 6
+(41)moving left from 0 5
+go back from -1 5
+(41)moving right from 0 5
+go back from 1 5
+(40)moving right from 1 5
+go back from 2 5
+(39)moving right from 2 5
+go back from 3 5
+(38)moving right from 3 5
+go back from 4 5
+(37)moving right from 4 5
+go back from 5 5
+(36)moving right from 5 5
+go back from 6 5
+(35)moving right from 6 5
+go back from 7 5
+(34)moving left from 6 4
+go back from 5 4
+(34)moving right from 6 4
+go back from 7 4
+(27)moving left from 0 3
+go back from -1 3
+(27)moving right from 0 3
+go back from 1 3
+(26)moving right from 1 3
+go back from 2 3
+(25)moving right from 2 3
+go back from 3 3
+(24)moving right from 3 3
+go back from 4 3
+(23)moving right from 4 3
+go back from 5 3
+(22)moving right from 5 3
+go back from 6 3
+(21)moving right from 6 3
+go back from 7 3
+(20)moving left from 6 2
+go back from 5 2
+(20)moving right from 6 2
+go back from 7 2
+(13)moving left from 0 1
+go back from -1 1
+(13)moving right from 0 1
+go back from 1 1
+(12)moving right from 1 1
+go back from 2 1
+(11)moving right from 2 1
+go back from 3 1
+(10)moving right from 3 1
+go back from 4 1
+(9)moving right from 4 1
+go back from 5 1
+(8)moving right from 5 1
+go back from 6 1
+(7)moving right from 6 1
+go back from 7 1
+(6)moving left from 6 0
+go back from 5 0
+(6)moving right from 6 0
+go back from 7 0
+111712
