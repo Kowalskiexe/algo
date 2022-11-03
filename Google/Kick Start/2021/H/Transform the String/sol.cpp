@@ -1,4 +1,4 @@
-// WA
+// 14/14pts
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -18,37 +18,20 @@ int main() {
     int t;
     scanf("%d", &t);
 
-    while (t--) {
+    for (int ii = 1; ii <= t; ii++) {
         char s[(int)1e5 + 1];
         char f['z' - 'a' + 2];
         scanf(" %s %s", s, f);
         int sn = strlen(s);
         int fn = strlen(f);
         int out = 0;
-        LOG("%s\n%s\n", s, f);
         for (int i = 0; i < sn; i++) {
-            LOG("matching %c\n", s[i]);
-            if (fn == 1)
-                out += char_dist(f[0], s[i]);
-            else {
-                int a = 0, b = fn - 1;
-                while (a < b) {
-                    int mid = (a + b) / 2;
-                    int cd = char_dist(f[mid], s[i]);
-                    int cdr = char_dist(f[mid + 1], s[i]);
-                    LOG("\t%d %d, %c(%d) %c(%d)\n", a, b, f[mid], cd, f[mid + 1], cdr);
-                    if (cd > cdr) {// -> right
-                        LOG("\tright\n");
-                        a = mid + 1;
-                    } else { // <- left
-                        LOG("\tleft\n");
-                        b = mid;
-                    }
-                }
-                LOG("closesed: %c\n", f[a]);
-                out += char_dist(f[a], s[i]);
+            int out2 = INT_MAX;
+            for (int j = 0; j < fn; j++) {
+                out2 = min(out2, char_dist(f[j], s[i]));
             }
+            out += out2;
         }
-        printf("%d\n", out);
+        printf("Case #%d: %d\n", ii, out);
     }
 }
