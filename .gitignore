@@ -1,0 +1,9 @@
+*.old
+*.pdf
+*.e
+*.s
+*.swp
+CSES/Sorting and Searching/Apartments/pilgrim2308.cpp
+*.stackdump
+*.zip
+*.class
