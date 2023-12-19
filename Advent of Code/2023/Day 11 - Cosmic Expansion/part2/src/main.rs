@@ -1,28 +1,45 @@
 use std::io::{self, BufRead};
 
-fn is_empty_h(line: &str) -> bool {
-    for ch in line.chars() {
-        if ch != '.' {
+fn is_empty_h(row: &Vec<char>) -> bool {
+    for ch in row {
+        if *ch != '.' {
             return false;
         }
     }
     true
 }
 
-fn dist(a: (usize, usize), b: (usize, usize)) -> usize {
+fn dist(
+    mask: &Vec<Vec<usize>>,
+    a: (usize, usize),
+    b: (usize, usize),
+) -> usize {
     let mut dist = 0;
-    let (ax, ay) = a;
-    let (bx, by) = b;
-    if ax > bx {
-        dist += ax - bx;
-    } else {
-        dist += bx - ax;
+    let (ay, ax) = a;
+    let (by, bx) = b;
+
+    let sx = usize::min(ax, bx);
+    let sy = usize::min(ay, by);
+    let dx = usize::max(ax, bx);
+    let dy = usize::max(ay, by);
+
+    let expansion_rate = 1_000_000;
+
+    for x in sx+1..=dx {
+        if mask[sy][x] == 1 {
+            dist += expansion_rate;
+        } else {
+            dist += 1;
+        }
     }
-    if ay > by {
-        dist += ay - by;
-    } else {
-        dist += by - ay;
+    for y in sy+1..=dy {
+        if mask[y][dx] == 1 {
+            dist += expansion_rate;
+        } else {
+            dist += 1;
+        }
     }
+
     dist
 }
 
@@ -31,13 +48,20 @@ fn main() {
     let mut map = Vec::<Vec<char>>::new();
     for line_result in reader.lines() {
         let line = line_result.unwrap();
-        if is_empty_h(&line) {
-            map.push(line.chars().clone().collect());
-        }
         map.push(line.chars().collect());
     }
-    let mut x = 0;
-    while x < map[0].len() {
+    let mut mask: Vec<_> = map.iter().map(
+        |row| vec![0; row.len()]
+    ).collect();
+    for (y, row) in map.iter().enumerate() {
+        if is_empty_h(row) {
+            for x in 0..mask[0].len() {
+                mask[y][x] = 1;
+            }
+        }
+    }
+
+    for x in 0..map[0].len() {
         let mut is_empty_v = true;
         for y in 0..map.len() {
             if map[y][x] != '.' {
@@ -46,21 +70,19 @@ fn main() {
             } 
         }
         if is_empty_v {
-            for y in 0..map.len() {
-                map[y].splice(x..x, vec!['.']);
+            for y in 0..mask.len() {
+                mask[y][x] = 1;
             }
-            x += 1;
         }
-        x += 1;
     }
 
-    // TODO: don't expand, use a mask
-    // fields marked a by a mask count as 1'000'000 fields
-
-    // expanded
-    for row in &map {
-        for ch in row {
-            print!("{ch}");
+    for (y, row) in map.iter().enumerate() {
+        for (x, ch) in row.iter().enumerate() {
+            if mask[y][x] == 0 {
+                print!("{ch}");
+            } else {
+                print!("o");
+            }
         }
         println!("");
     }
@@ -78,7 +100,8 @@ fn main() {
     let mut result = 0;
     for g1 in &galaxies {
         for g2 in &galaxies {
-            result += dist(*g1, *g2);
+            let d = dist(&mask, *g1, *g2);
+            result += d;
         }
     }
     result /= 2;
