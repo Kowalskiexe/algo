@@ -20,15 +20,27 @@ int main() {
     }
     for (auto [k, v] : m)
         LOG("%d: %d\n", k, v);
+    vector<int> values;
+    values.reserve(m.size());
+    for (auto [k, v] : m)
+        values.push_back(v);
+    sort(values.begin(), values.end(), std::greater());
+
     int last_result = -1;
     for (int d = 1; d <= n; d++) {
         if (last_result == 0) {
             printf("0 ");
         } else {
             int result = 0;
-            for (auto &[k, v] : m) {
+            // for (auto &[k, v] : m) {
+            //     result += v / d;
+            // }
+            for (int v : values) {
+                if (v / d == 0)
+                    break;
                 result += v / d;
             }
+            
             result *= d;
             printf("%d ", result);
             last_result = result;
