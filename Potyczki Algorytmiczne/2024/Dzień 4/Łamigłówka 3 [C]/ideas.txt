@@ -1,0 +1,53 @@
+zdejmować po kolei paski
+
+
+znaleźć pasek, który składa się tylko z jednego koloru i
+gwiazdek(*). Gwiazdki wstawiaj w miejsce zdjętego koloru.
+
+AAPAA
+APPAA
+AAPAA
+AAPAA
+APPPA
+
+K 1 A (kolumna 1)
+
+*APAA
+*PPAA
+*APAA
+*APAA
+*PPPA
+
+K 3 P, K 5 A
+
+*A*A*
+*P*A*
+*A*A*
+*A*A*
+*P*P*
+
+R 1 A (rząd 1)
+
+*****
+*P*A*
+*A*A*
+*A*A*
+*P*P*
+
+R 3 A, R 4 A, R 5 P
+
+*****
+*P*A*
+*****
+*****
+*****
+
+K 2 P, K 4 A
+
+*****
+*****
+*****
+*****
+*****
+
+potem odwróć kolejność zdejmowania
